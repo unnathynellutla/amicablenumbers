@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+</head>
+							
+	<script language= "javascript">
+		
+	 function showValue() {
+		var val;
+		 if(document.getElementById("fnum").value == "") {
+			 alert("Please enter a first number.");
+		 }
+		 if(document.getElementById("snum").value == "") {
+			 alert("Please enter a second number.");
+		 }
+	 }
+		
+	 function AreAmiable() {
+		
+		d = parseInt(document.getElementById("fnum").value);
+		f = parseInt(document.getElementById("snum").value);
+		 
+			
+		if(Compare(d, f) == true) {
+			document.getElementById("amiable").innerHTML="The numbers: " + d + " and " + f + " are amicable";
+			} else {
+			document.getElementById("amiable").innerHTML="The numbers: " + d + " and " + f + " are not amicable";
+			}	
+	 } 
+	
+	function Compare(b, c) {	
+		
+		FactorsList1 = Factorize(b);
+		FactorsList2 = Factorize(c);
+		e = AddFactors(FactorsList1);
+		g = AddFactors(FactorsList2);
+
+		if (e == c && g == b){
+			return true;
+		}
+		return false;
+	}
+	
+	function Factorize(a) {
+		FactorsList = [];
+		for (i = 0; i < (a/2 + 1); i++) {
+				
+			if (isAFactor(i, a) == true) {
+				FactorsList.push(i)
+			}
+		} 
+		alert("Factors of "+ a + ": "+ JSON.stringify(FactorsList));
+		return FactorsList;
+	 } 
+		
+	function AddFactors(factors) {
+		sum = 0;
+		while (factors.length != 0) {
+			sum = sum + factors.pop();
+		}	
+		
+		return sum;
+		
+	}
+		
+	function isAFactor(x, y) {
+		if(y % x == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+		
+</script>
+	
+	<form name = "MyForm" id = "MyForm" onSubmit = "return showValue()">
+	  <label for="fnum"> First Number: </label> <input type="text" id="fnum">
+	  <br>
+	  <label for="snum">Second Number:</label> <input type="text" id="snum">
+	  <br>
+	  <input type ="button" value="Enter" name="btn1" onclick="return AreAmiable()">
+	  <div id = "amiable"> </div>
+	</form>
+<body>
+</body>
+</html>
